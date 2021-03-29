@@ -1,6 +1,6 @@
 package Java;
 import java.util.Vector;
- 
+
 
 public class BinaryTree {
 
@@ -52,11 +52,11 @@ public class BinaryTree {
             bin_tree.addNode(i);
         }
         Vector<Integer> in_order = bin_tree.getInOrder();
-        //Vector<Integer> pre_order = bin_tree.getPreOrder();
-        //Vector<Integer> post_order = bin_tree.getPostOrder();
+        Vector<Integer> pre_order = bin_tree.getPreOrder();
+        Vector<Integer> post_order = bin_tree.getPostOrder();
         System.out.println(in_order);
-        //System.out.println(pre_order);
-        //System.out.println(post_order);
+        System.out.println(pre_order);
+        System.out.println(post_order);
         boolean success = bin_tree.deleteNode(23);
         if (success == true) {
             in_order = bin_tree.getInOrder();
@@ -69,9 +69,9 @@ public class BinaryTree {
         System.out.println(height);
     }
 
-    public void addNode(int value) {
+    public void addNode(int new_value) {
         size = size+1;
-        Node new_node = new Node(value);
+        Node new_node = new Node(new_value);
         Node current_node = head;
         Node previous_node = current_node;
         //Binary Tree is current empty
@@ -80,11 +80,11 @@ public class BinaryTree {
         } else {
             while (current_node != null) {
                 previous_node = current_node;
-                current_node = (value > current_node.getValue()) ? current_node.getRight() : current_node.getLeft();
+                current_node = (new_value > current_node.value) ? current_node.right : current_node.left;
             }
-            if (value < previous_node.getValue()) {
+            if (new_value < previous_node.value) {
                 previous_node.setLeft(new_node);
-            } else if (value > previous_node.getValue()) {
+            } else if (new_value > previous_node.value) {
                 previous_node.setRight(new_node);
             }
         }
@@ -92,12 +92,12 @@ public class BinaryTree {
 
     private void genInOrder(Node current_node, Vector<Integer> values) {
         if (current_node != null) {
-            if (current_node.getLeft() != null) {
-                genInOrder(current_node.getLeft(), values);
+            if (current_node.left != null) {
+                genInOrder(current_node.left, values);
             }
-            values.add(values.size(),current_node.getValue());
-            if (current_node.getRight() != null) {
-                genInOrder(current_node.getRight(), values);
+            values.add(values.size(),current_node.value);
+            if (current_node.right != null) {
+                genInOrder(current_node.right, values);
             }
         }
     }
@@ -111,13 +111,13 @@ public class BinaryTree {
     //Pre-Order generating [root, pre-order] values
     private void genPreOrder(Node current_node, Vector<Integer> values) {
         if (current_node != null) {
-            values.add(values.size(),current_node.getValue());
+            values.add(values.size(),current_node.value);
         
-            if (current_node.getLeft() != null) {
-                genPreOrder(current_node.getLeft(), values);
+            if (current_node.left != null) {
+                genPreOrder(current_node.left, values);
             }
-            if (current_node.getRight() != null) {
-                genPreOrder(current_node.getRight(), values);
+            if (current_node.right != null) {
+                genPreOrder(current_node.right, values);
             }
         }
     }
@@ -130,13 +130,13 @@ public class BinaryTree {
 
     private void genPostOrder(Node current_node, Vector<Integer> values) {
         if (current_node != null) {
-            if (current_node.getLeft() != null) {
-                genPostOrder(current_node.getLeft(), values);
+            if (current_node.left != null) {
+                genPostOrder(current_node.left, values);
             }
-            if (current_node.getRight() != null) {
-                genPostOrder(current_node.getRight(), values);
+            if (current_node.left != null) {
+                genPostOrder(current_node.right, values);
             }
-            values.add(values.size(),current_node.getValue());
+            values.add(values.size(),current_node.value);
         }
     }
 
@@ -152,11 +152,11 @@ public class BinaryTree {
         if (current_node == null) {
             return;
         }
-        Node temp_left = current_node.getLeft();
-        current_node.setLeft(current_node.getRight());
+        Node temp_left = current_node.left;
+        current_node.setLeft(current_node.right);
         current_node.setRight(temp_left);
-        reverseTree(current_node.getLeft());
-        reverseTree(current_node.getRight());
+        reverseTree(current_node.left);
+        reverseTree(current_node.right);
     }
 
     public void reverse() {
@@ -165,7 +165,7 @@ public class BinaryTree {
 
     private int genHeight(Node current_node) {
         if (current_node != null) {
-            return 1 + Math.max(genHeight(current_node.getLeft()),genHeight(current_node.getRight()));   
+            return 1 + Math.max(genHeight(current_node.left),genHeight(current_node.right));   
         } else {
             return -1;
         }
@@ -178,7 +178,7 @@ public class BinaryTree {
 
     public boolean deleteNode(int val) {
         boolean success;
-        Node current = this.head;
+        Node current = head;
         Node previous = current;
         while ((current != null) && (current.value != val)) {
             previous = current;
@@ -194,9 +194,9 @@ public class BinaryTree {
 
         } else if ((current.left == null) && (current.right) == null) {
             //Node has no children
-            if (current == this.head) {
+            if (current == head) {
                 //Case for deleting head of tree
-                this.head = null;
+                head = null;
             } else if (previous.value > current.value) {
                 previous.left = null;                
             } else {
@@ -206,9 +206,9 @@ public class BinaryTree {
 
         } else if (current.right == null) {
             //Node only has a left child
-            if (current == this.head) {
+            if (current == head) {
                 //Case for deleting head of tree
-                this.head = current.left;
+                head = current.left;
             } else if (previous.value > current.value) {
                 previous.left = current.left;
             } else {
@@ -218,9 +218,9 @@ public class BinaryTree {
 
         } else if (current.left == null) {
             //Node only has a right child
-            if (current == this.head) {
+            if (current == head) {
                 //Case for deleting head of tree
-                this.head = current.right;
+                head = current.right;
             } else if (previous.value > current.value){
                 previous.left = current.right;
             } else {

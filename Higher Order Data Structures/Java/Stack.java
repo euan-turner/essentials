@@ -1,4 +1,5 @@
 package Java;
+import java.util.Arrays;
 
 public class Stack {
     private Node start;
@@ -8,15 +9,27 @@ public class Stack {
         private int data;
         private Node pointer;
 
-        Node(int value) {
-            this.data = value;
-            this.pointer = null;
+        Node(int data) {
+            this.data = data;
+            pointer = null;
+        }
+
+        public int getData() {
+            return data;
+        }
+
+        public Node getPointer() {
+            return pointer;
+        }
+
+        public void setPointer(Node node) {
+            pointer = node;
         }
     }
 
     Stack() {
-        this.start = null;
-        this.size = 0;
+        start = null;
+        size = 0;
     }
 
     public static void main(String[] args) {
@@ -26,45 +39,46 @@ public class Stack {
             stack.push(i);
         }
         System.out.println(stack.peek());
+        System.out.println(stack.pop());
         int[] contents = stack.empty();
-        for (int c : contents) {
-            System.out.println(c);
-        }
+        System.out.println(Arrays.toString(contents));
+
         System.out.println(stack.size);
 
     }
 
     public void push(int data) {
         Node new_node = new Node(data);
-        new_node.pointer = this.start;
-        this.start = new_node;
-        this.size ++;
+        new_node.setPointer(start);
+        start = new_node;
+        size ++;
     }
 
-    public int pop() {
-        if (this.start != null) {
-            int popped = this.start.data;
-            this.start = this.start.pointer;
-            this.size --;
+    public Integer pop() {
+        if (start != null) {
+            Integer popped = start.data;
+            start = start.pointer;
+            size --;
             return popped;
         } else {
-            return -1;
+            return null;
         }
     }
 
     public Integer peek() {
-        if (this.start != null) {
-            return this.start.data;
+        if (start != null) {
+            return start.data;
         } else {
             return null;
         }
     }
 
     public int[] empty() {
-        int[] contents = new int[this.size];
-        int s = this.size;
+        int[] contents = new int[size];
+        int s = size;
         for (int i = 0;i < s;i++) {
-            contents[i] = this.pop();
+            Integer val = this.pop();
+            contents[i] = val;
         }
         return contents;
     }

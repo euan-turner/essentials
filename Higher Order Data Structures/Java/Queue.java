@@ -41,20 +41,20 @@ public class Queue {
         for (int d : data) {
             queue.enqueue(d);
         }
-        System.out.println(queue.get_head().value);
-        System.out.println(queue.get_tail().value);
+        System.out.println(queue.get_head());
+        System.out.println(queue.get_tail());
         do {
             System.out.println(queue.dequeue());
         } 
         while (queue.size>0);
     }
 
-    public Node get_head() {
-        return front_pointer;
+    public int get_head() {
+        return front_pointer.value;
     }
 
-    public Node get_tail() {
-        return back_pointer;
+    public int get_tail() {
+        return back_pointer.value;
     }
 
     public void enqueue(int data) {
@@ -63,7 +63,7 @@ public class Queue {
         if (back_pointer == null) {
             front_pointer = new_node;
         } else {
-            back_pointer.next = new_node;
+            back_pointer.setNext(new_node);
         }
 
         back_pointer = new_node;
