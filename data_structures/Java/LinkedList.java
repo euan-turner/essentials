@@ -33,6 +33,14 @@ public class LinkedList {
         int size = 0;
     }
 
+    public int getSize() {
+        return size;
+    }
+
+    public Node getStart() {
+        return start_pointer;
+    }
+
     public static void main(String[] args) {
         int[] vals = {5,3,7,1,6,3};
         LinkedList ll = new LinkedList();
