@@ -189,14 +189,14 @@ class Binary_Tree:
         n_i_v[0] = [height,self.root]
         height+=1
         ##To the left
-        self.buildView(self.root.left,n_i_v,hd-1,height)
+        self.build_view(self.root.left,n_i_v,hd-1,height)
         ##To the right
-        self.buildView(self.root.right,n_i_v,hd+1,height)
+        self.build_view(self.root.right,n_i_v,hd+1,height)
         nodes = [value[1].data for (key,value) in sorted(n_i_v.items())]
         return sorted(nodes)
 
     ##Recursive function for get_top_view()
-    def buildView(self,node,n_i_v,hd,height):
+    def build_view(self,node,n_i_v,hd,height):
         if node == None:
             return 
         try:
@@ -207,9 +207,9 @@ class Binary_Tree:
             n_i_v[hd] = [height,node]
         height+=1
         ##To the left
-        self.buildView(node.left,n_i_v,hd-1,height)
+        self.build_view(node.left,n_i_v,hd-1,height)
         ##To the right
-        self.buildView(node.right,n_i_v,hd+1,height)
+        self.build_view(node.right,n_i_v,hd+1,height)
 
 
 
@@ -250,7 +250,8 @@ def show():
 
     tree.reverse(tree.root)
     print("\nReversed Breadth-First:",tree.breadth_first())
+    '''
     top_view = tree.get_top_view()
     print(top_view)
-    '''
+    
 show()

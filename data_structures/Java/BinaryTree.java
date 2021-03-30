@@ -1,7 +1,10 @@
 package Java;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Collections;
 import Java.Queue;
+import Java.Pair;
 
 public class BinaryTree {
 
@@ -71,6 +74,8 @@ public class BinaryTree {
         // System.out.println(rev_in_order);
         // int height = bin_tree.getHeight();
         // System.out.println(height);
+        ArrayList<Integer> topdown = bin_tree.topdownView();
+        System.out.println("Top-down: " + Arrays.toString(topdown.toArray(new Integer[0])));
     }
 
     public void addNode(int new_value) {
@@ -275,6 +280,52 @@ public class BinaryTree {
             success = true;
         }
         return success;
+    }
+
+    //Get a top-down view of the binary tree
+    public ArrayList<Integer> topdownView() {
+        HashMap<Integer, Pair<Integer,Integer>> view = new HashMap<Integer, Pair<Integer,Integer>>();
+        int horiDist = 0;
+        int height = 0;
+        Pair<Integer,Integer> first = new Pair<>(height, head.value);
+        view.put(horiDist,first);
+        height ++;
+        //Build to the left
+        this.buildView(head.left, view, horiDist-1, height);
+        //Build to the right
+        this.buildView(head.right, view, horiDist+1, height);
+
+        ArrayList<Integer> output = new ArrayList<>();
+        for (Pair<Integer,Integer> i : view.values()) {
+            output.add(i.getValue());
+        }
+        Collections.sort(output);
+        return output;
+
+    }
+
+    //Recursive function to build topdown view
+    private void buildView(Node node, HashMap<Integer, Pair<Integer,Integer>> view, 
+            int hd, int height) {
+        if (node == null) {
+            return;
+        }
+        if (view.containsKey(hd) == true) {
+            Pair<Integer,Integer> current = view.get(hd);
+            if (current.getKey() > height) {
+                Pair<Integer,Integer> newPair = new Pair<>(height, node.value);
+                view.put(hd, newPair);
+            } 
+        } else {
+            Pair<Integer,Integer> newPair = new Pair<>(height, node.value);
+            view.put(hd, newPair);
+        }
+        height ++;
+        //To the left
+        this.buildView(node.left, view, hd-1, height);
+        //To the right
+        this.buildView(node.right, view, hd+1, height);
+
     }
 }
 
