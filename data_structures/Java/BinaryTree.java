@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Collections;
-import Java.Queue;
-import Java.Pair;
+import Queue;
+import Pair;
 
 public class BinaryTree {
 
@@ -64,16 +64,17 @@ public class BinaryTree {
 
         Integer[] bfs = bin_tree.breadth_first();
         System.out.println("Breadth first: " + Arrays.toString(bfs));
-        // boolean success = bin_tree.deleteNode(23);
-        // if (success == true) {
-        //     in_order = bin_tree.getInOrder();
-        //     System.out.println(in_order);
-        // }
-        // bin_tree.reverse();
-        // int[] rev_in_order = bin_tree.getInOrder();
-        // System.out.println(rev_in_order);
-        // int height = bin_tree.getHeight();
-        // System.out.println(height);
+
+        boolean success = bin_tree.deleteNode(23);
+        if (success == true) {
+            in_order = bin_tree.getInOrder();
+            System.out.println("Deleted 23: " + Arrays.toString(in_order));
+        }
+        bin_tree.reverse();
+        Integer[] rev_in_order = bin_tree.getInOrder();
+        System.out.println("Reversed: " + Arrays.toString(rev_in_order));
+        int height = bin_tree.getHeight();
+        System.out.println("Height: " + String.valueOf(height));
         ArrayList<Integer> topdown = bin_tree.topdownView();
         System.out.println("Top-down: " + Arrays.toString(topdown.toArray(new Integer[0])));
     }

@@ -35,6 +35,14 @@ public class Queue<T> {
         int size = 0;
     }
 
+    public T get_head() {
+        return front_pointer.value;
+    }
+
+    public T get_tail() {
+        return back_pointer.value;
+    }
+
     public static void main(String[] args) {
         Integer[] data = {25, 39, 46, 20, 3, 23, 35, 32, 8, 16, 12, 33, 36, 31, 49, 41, 2, 4, 6, 9, 17, 34, 24, 13, 0, 42, 37, 40, 44, 30};
         Queue<Integer> queue = new Queue<Integer>();
@@ -47,14 +55,6 @@ public class Queue<T> {
             System.out.println(queue.dequeue());
         } 
         while (queue.size>0);
-    }
-
-    public T get_head() {
-        return front_pointer.value;
-    }
-
-    public T get_tail() {
-        return back_pointer.value;
     }
 
     public void enqueue(T data) {

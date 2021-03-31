@@ -1,6 +1,5 @@
 import random
 
-
 def bubble_sort(arr):
     for s in range(0,len(arr)-1):
         finished = True
@@ -15,11 +14,8 @@ def bubble_sort(arr):
     return arr
 
 
-
-
-
 arr = []
 for _ in range(20):
-    arr.append(random.randint(1,20))
+    arr.append(random.randint(1,25))
 print(arr)
 print(bubble_sort(arr))
