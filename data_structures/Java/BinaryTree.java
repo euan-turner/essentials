@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Collections;
-import Queue;
-import Pair;
+import Java.Queue;
+import Java.Pair;
 
 public class BinaryTree {
 
