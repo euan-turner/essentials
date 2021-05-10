@@ -1,0 +1,2 @@
+#Don't track binary
+__pycache__/
