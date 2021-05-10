@@ -70,12 +70,14 @@ def merge(left,right):
         new += right
     return new
 
-arr = []
-for _ in range(20):
-    arr.append(random.randint(1,20))
-print(iterative_merge(arr.copy()))
-recursive_merge(arr)
-print(arr)
+
+def run():
+    arr = []
+    for _ in range(20):
+        arr.append(random.randint(1,20))
+    print(iterative_merge(arr.copy()))
+    recursive_merge(arr)
+    print(arr)
 
 
 

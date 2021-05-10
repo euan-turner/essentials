@@ -11,18 +11,17 @@ def insertion_sort(arr):
         arr.pop(i)
         
         arr = arr[:insert] + [curr] + arr[insert:]
-        print(arr)
     return arr
 
 
 
+def run():
+    arr = []
+    for _ in range(20):
+        arr.append(random.randint(1,20))
 
-arr = []
-for _ in range(20):
-    arr.append(random.randint(1,20))
 
-
-print(arr)
-print(insertion_sort(arr))
+    print(arr)
+    print(insertion_sort(arr))
 
 

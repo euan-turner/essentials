@@ -27,8 +27,9 @@ def quicksort(arr):
 
         return left + [arr[p2]] + right
 
-arr = []
-for _ in range(20):
-    arr.append(random.randint(1,20))
-print(arr)
-print(quicksort(arr))
+def run():
+    arr = []
+    for _ in range(20):
+        arr.append(random.randint(1,20))
+    print(arr)
+    print(quicksort(arr))

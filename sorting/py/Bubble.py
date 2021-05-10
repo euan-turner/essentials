@@ -9,13 +9,14 @@ def bubble_sort(arr):
                 finished = False
                 ##Swap items
                 arr[i],arr[i+1] = arr[i+1],arr[i]
+        print(arr)
         if finished:
             return arr
     return arr
 
-
-arr = []
-for _ in range(20):
-    arr.append(random.randint(1,25))
-print(arr)
-print(bubble_sort(arr))
+def run():
+    arr = []
+    for _ in range(20):
+        arr.append(random.randint(1,25))
+    arr = [25,34,98,7,41,19,5,17,11,12]
+    print(bubble_sort(arr))
