@@ -17,11 +17,13 @@ def insertion_sort(arr):
 
 def run():
     arr = []
-    for _ in range(20):
-        arr.append(random.randint(1,20))
+    for _ in range(100):
+        arr.append(random.randint(1,100))
 
 
     print(arr)
-    print(insertion_sort(arr))
+    a = insertion_sort(arr.copy())
+    print(a)
+
 
 

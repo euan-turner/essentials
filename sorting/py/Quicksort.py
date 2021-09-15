@@ -32,4 +32,5 @@ def run():
     for _ in range(20):
         arr.append(random.randint(1,20))
     print(arr)
-    print(quicksort(arr))
+    a = quicksort(arr.copy())
+    print(a)

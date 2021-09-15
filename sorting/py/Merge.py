@@ -1,7 +1,7 @@
 import random
 ##Recursive merge sort - sorts in place
 def recursive_merge(arr):
-    print("Splitting: ", arr)
+    ##print("Splitting: ", arr)
     if len(arr) > 1:
         m = len(arr)//2
         left = arr[:m]
@@ -14,7 +14,7 @@ def recursive_merge(arr):
         i = j = k = 0
         ##i,j are indices for left,right
         ##k is the index to change arr at 
-        print("Merging: ", arr)
+        ##print("Merging: ", left, right)
         while i < len(left) and j < len(right):
             if left[i] < right[j]:
                 arr[k] = left[i]
@@ -33,6 +33,7 @@ def recursive_merge(arr):
             arr[k] = right[j]
             j += 1
             k += 1
+        return arr
 
 ##Iterative merge sort
 def iterative_merge(arr):
@@ -76,8 +77,8 @@ def run():
     for _ in range(20):
         arr.append(random.randint(1,20))
     print(iterative_merge(arr.copy()))
-    recursive_merge(arr)
-    print(arr)
+    arr2 = recursive_merge(arr)
+    print(arr2)
 
 
 
